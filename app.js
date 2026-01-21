@@ -2,6 +2,12 @@ import express from "express";
 import "dotenv/config";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import userRouter from "./routes/usersRoutes.js";
+import ticketRouter from "./routes/ticketsRoutes.js";
+
+// Importa tus routers aquí (asegúrate de que los archivos existan)
+// import userRouter from "./routes/user.routes.js";
+// import ticketRouter from "./routes/ticket.routes.js";
 
 const app = express();
 const DB_URL =
@@ -12,11 +18,18 @@ const DB_URL =
 app.use(morgan("dev"));
 app.use(express.json());
 
-mongoose.connect(DB_URL).then(()=>{
-    console.log("connected to mongoDB: "+DB_URL);
-}).catch((err)=>{
+mongoose
+  .connect(DB_URL)
+  .then(() => {
+    console.log("connected to mongoDB: " + DB_URL);
+  })
+  .catch((err) => {
     console.error(err);
-})
+  });
+
+// Registra las rutas con el prefijo /api
+app.use("/api/users", userRouter);
+app.use("/api/tickets", ticketRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("hellow word gaston si");

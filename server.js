@@ -1,10 +1,10 @@
 import "dotenv/config";
 import app from "./app.js";
 
-const port = process.env.PORT || 3000;
-const server = app.listen(port,()=>{
-    console.log(process.env.NODE_ENV);
-    console.log(`server running on port http://localhost:${port}`);
-})
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+  console.log(process.env.NODE_ENV);
+  console.log(`server running on port http://localhost:${port}`);
+});
 
-export default server; 
+export default server;
