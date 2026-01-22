@@ -2,29 +2,16 @@ import express from "express";
 import Ticket from "../model/ticket.js";
 import auth from "../middlewares/auth.js";
 import admin from "../middlewares/admind.js"; // Corregido: asumí que 'admind' era un error tipográfico
+import buildFilter from "../middlewares/filter.js";
+import pagination from "../middlewares/pagination.js";
+import ticketSchema from "../validations/ticketValidation.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const pagSize = parseInt(req.query.pageSize) || 10;
-  const page = parseInt(req.query.page) || 1;
-
-  try {
-    const tickets = await Ticket.find()
-      .skip((page - 1) * pagSize)
-      .limit(pagSize);
-    const totalTickets = await Ticket.countDocuments();
-
-    res.status(200).json({
-      tickets,
-      page,
-      pages: Math.ceil(totalTickets / pagSize),
-      currentPage: page,
-    });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.get("/", [buildFilter, pagination(Ticket)], async (req, res) => {
+  res.status(200).json(req.paginatedResult);
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
@@ -38,6 +25,11 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", auth, async (req, res) => {
+ const {error} = ticketSchema.validate(req.body);
+   if(error){
+    return res.status(400).json({error:error.details[0].message})
+   }
+)
   const ticket = new Ticket({
     user: req.user._id,
     title: req.body.title,

@@ -1,0 +1,17 @@
+{
+  metadata: TypeError: Cannot read properties of undefined (reading 'replace')
+      at auth (file:///home/gaston/ticket-system/middlewares/auth.js:4:44)
+      at Layer.handle [as handle_request] (/home/gaston/ticket-system/node_modules/express/lib/router/layer.js:95:5)
+      at next (/home/gaston/ticket-system/node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (/home/gaston/ticket-system/node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (/home/gaston/ticket-system/node_modules/express/lib/router/layer.js:95:5)
+      at /home/gaston/ticket-system/node_modules/express/lib/router/index.js:284:15
+      at router.process_params (/home/gaston/ticket-system/node_modules/express/lib/router/index.js:346:12)
+      at next (/home/gaston/ticket-system/node_modules/express/lib/router/index.js:280:10)
+      at router.handle (/home/gaston/ticket-system/node_modules/express/lib/router/index.js:175:3)
+      at router (/home/gaston/ticket-system/node_modules/express/lib/router/index.js:47:12),
+  level: 'error',
+  message: "Cannot read properties of undefined (reading 'replace')",
+  timestamp: '2026-01-22T18:46:25.112Z'
+}
+B

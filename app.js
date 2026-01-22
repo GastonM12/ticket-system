@@ -4,6 +4,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import userRouter from "./routes/usersRoutes.js";
 import ticketRouter from "./routes/ticketsRoutes.js";
+import error from "./middlewares/error.js";
 
 // Importa tus routers aquí (asegúrate de que los archivos existan)
 // import userRouter from "./routes/user.routes.js";
@@ -30,9 +31,11 @@ mongoose
 // Registra las rutas con el prefijo /api
 app.use("/api/users", userRouter);
 app.use("/api/tickets", ticketRouter);
-
 app.get("/", (req, res) => {
+
   res.status(200).send("hellow word gaston si");
 });
+app.use(error);
+
 
 export default app;
