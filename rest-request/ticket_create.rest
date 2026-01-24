@@ -1,0 +1,8 @@
+POST http://localhost:4000/api/tickets HTTP/1.1
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmZmIwNzIwNy1jYjMwLTRhNzgtYTRlNS03N2Y1MDZjZGI5ZTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjkwMjc4MTMsImV4cCI6MTc2OTExNDIxM30.yWComNU-dh0KOBCOEm58NVi1WSY6PBO_ZyITaB9feCw
+
+{
+    "title":"ticket 16",
+    "descripcion":"esto es una descripcion"
+}
